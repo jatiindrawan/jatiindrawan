@@ -1,0 +1,36 @@
+steps:
+  # Step 1: Authenticate with Google Cloud (if necessary)
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        # Authenticate using the service account key (if needed)
+        if [ -f /workspace/sa-key.json ]; then
+          gcloud auth activate-service-account --key-file=/workspace/sa-key.json
+        fi
+        gcloud config set project $PROJECT_ID
+
+  # Step 2: Get credentials for the Kubernetes cluster
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        gcloud container clusters get-credentials $CLUSTER_NAME --zone $ZONE --project $PROJECT_ID
+
+  # Step 3: Apply the Kubernetes manifest
+  - name: 'gcr.io/cloud-builders/kubectl'
+    args:
+      - 'apply'
+      - '-f'
+      - 'kubernetes-manifest.yaml'
+
+# Substitutions for parameters
+substitutions:
+  _CLUSTER_NAME: 'your-cluster-name'
+  _ZONE: 'your-cluster-zone'
+  _PROJECT_ID: 'your-project-id'
+
+# Optionally define a timeout
+timeout: '1200s'
