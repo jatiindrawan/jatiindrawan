@@ -12,26 +12,32 @@ steps:
   #       gcloud config set project $PROJECT_ID
 
   # Step 2: Get credentials for the Kubernetes cluster
-  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-    entrypoint: 'bash'
-    args:
-      - '-c'
-      - |
-        gcloud container clusters get-credentials $_CLUSTER_NAME --region $_ZONE --project $_PROJECT_ID
+  # - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  #   entrypoint: 'bash'
+  #   args:
+  #     - '-c'
+  #     - |
+  #       gcloud container clusters get-credentials $_CLUSTER_NAME --region $_ZONE --project $_PROJECT_ID
 
-  # Step 3: Apply the Kubernetes manifest
-  - name: 'gcr.io/cloud-builders/kubectl'
-    args:
-      - 'apply'
-      - '-f'
-      - '/core/address.yaml'
-      # - 'kubernetes-manifest.yaml'
+  # # Step 3: Apply the Kubernetes manifest
+  # - name: 'gcr.io/cloud-builders/kubectl'
+  #   args:
+  #     - 'apply'
+  #     - '-f'
+  #     - '/core/address.yaml'
+  #     # - 'kubernetes-manifest.yaml'
+  
+- name: 'gcr.io/cloud-builders/kubectl'
+  args: ['apply', '-f', 'k8s/']
+  env:
+  - 'CLOUDSDK_COMPUTE_REGION=asia-southeast2'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=automation-cluster'
 
 # Substitutions for parameters
-substitutions:
-  _CLUSTER_NAME: 'automation-cluster'
-  _ZONE: 'asia-southeast2'
-  _PROJECT_ID: 'silken-campus-261807'
+# substitutions:
+#   _CLUSTER_NAME: 'automation-cluster'
+#   _ZONE: 'asia-southeast2'
+#   _PROJECT_ID: 'silken-campus-261807'
 
 # Optionally define a timeout 
 timeout: '1200s'
