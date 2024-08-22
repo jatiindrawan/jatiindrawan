@@ -33,7 +33,7 @@ steps:
 #   _ZONE: 'asia-southeast2'
 #   _PROJECT_ID: 'silken-campus-261807'
 
-# Optionally define a timeout
+# Optionally define a timeout 
 timeout: '1200s'
 
 options:
