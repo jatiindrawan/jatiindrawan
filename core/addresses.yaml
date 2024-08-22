@@ -6,7 +6,7 @@ metadata:
     cnrm.cloud.google.com/project-id: silken-campus-261807
     cnrm.cloud.google.com/blueprint: 'kpt-fn'
     cnrm.cloud.google.com/deletion-policy: abandon
-  namespace: core-networking-addresses
+  namespace: core-networking-address
   name: xpgbastionsilken-private-ip
   labels:
     appname: udp
