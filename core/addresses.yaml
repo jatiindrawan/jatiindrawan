@@ -19,5 +19,4 @@ spec:
   ipVersion: IPV4
   location: asia-southeast2
   subnetworkRef:
-    name: app1-subnet-prd
-    namespace: core-networking-subnets
+    external: projects/silken-campus-261807/regions/asia-southeast2/subnetworks/app1-subnet-prd
