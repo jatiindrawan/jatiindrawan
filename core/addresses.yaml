@@ -1,0 +1,23 @@
+---
+apiVersion: compute.cnrm.cloud.google.com/v1beta1
+kind: ComputeAddress
+metadata:
+  annotations:
+    cnrm.cloud.google.com/project-id: silken-campus-261807
+    cnrm.cloud.google.com/blueprint: 'kpt-fn'
+    cnrm.cloud.google.com/deletion-policy: abandon
+  namespace: core-networking-addresses
+  name: xpgbastionsilken-private-ip
+  labels:
+    appname: udp
+    appown: jati-indrawan
+    comown: found-interconnect
+    environment: prd
+    so: ws2
+spec:
+  addressType: INTERNAL
+  ipVersion: IPV4
+  location: asia-southeast2
+  subnetworkRef:
+    name: app1-subnet-prd
+    namespace: core-networking-subnets
