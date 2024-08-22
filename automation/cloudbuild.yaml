@@ -17,7 +17,7 @@ steps:
     args:
       - '-c'
       - |
-        gcloud container clusters get-credentials automation-cluster --region asia-southeast2 --project silken-campus-261807
+        gcloud container clusters get-credentials $_CLUSTER_NAME --region $_ZONE --project $_PROJECT_ID
 
   # Step 3: Apply the Kubernetes manifest
   - name: 'gcr.io/cloud-builders/kubectl'
@@ -28,10 +28,10 @@ steps:
       # - 'kubernetes-manifest.yaml'
 
 # Substitutions for parameters
-# substitutions:
-#   _CLUSTER_NAME: 'automation-cluster'
-#   _ZONE: 'asia-southeast2'
-#   _PROJECT_ID: 'silken-campus-261807'
+substitutions:
+  _CLUSTER_NAME: 'automation-cluster'
+  _ZONE: 'asia-southeast2'
+  _PROJECT_ID: 'silken-campus-261807'
 
 # Optionally define a timeout 
 timeout: '1200s'
