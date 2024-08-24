@@ -10,11 +10,9 @@ metadata:
   namespace: core-networking-address
   name: xpgbastionsilken-private-ip
   labels:
-    appname: udp
     appown: jati-indrawan
     comown: found-interconnect
     environment: prd
-    so: ws2
 spec:
   addressType: INTERNAL
   ipVersion: IPV4
